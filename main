@@ -1,0 +1,32 @@
+import pygame as pg
+import logging
+
+WIDTH = 720
+HEIGHT = 720
+BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
+
+try:
+    pg.init()
+except:
+    logging.error('Pygame Initialization Error!!!')
+
+pg.display.set_caption('Pygame Hello-World Hacktober Fest 2019')
+background = pg.display.set_mode((WIDTH, HEIGHT))
+helloimg = pg.image.load('./media/hello-world.png').convert_alpha()
+helloimg = pg.transform.scale(helloimg, (300, 300))
+pg.mixer.music.load('./media/hello-world.mp3')
+hellofont = pg.font.SysFont('comicsansms', 30)
+pg.mixer.music.play(-1)
+
+while(True):
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            exit()
+    background.fill(WHITE)
+    text = hellofont.render('HELLO WORLD!! (wait for the music...)', True, BLUE)
+    textRect = text.get_rect()
+    textRect.center = (WIDTH/2, HEIGHT/2)
+    background.blit(text, textRect)
+    background.blit(helloimg, (WIDTH/2-150, HEIGHT/2-300))
+    pg.display.update()
