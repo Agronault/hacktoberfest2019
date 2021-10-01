@@ -30,3 +30,4 @@ while(True):
     background.blit(text, textRect)
     background.blit(helloimg, (WIDTH/2-150, HEIGHT/2-300))
     pg.display.update()
+hello
